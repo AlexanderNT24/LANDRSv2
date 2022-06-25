@@ -38,6 +38,7 @@ namespace LANDRS
                         Principal objVentana=new Principal();
                         objVentana.Show();
                         this.Hide();
+                        break;
                     }
                 }
 

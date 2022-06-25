@@ -17,18 +17,26 @@ namespace LANDRS
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void abrirFormularioHijo(object formulario)
         {
-            double precio =double.Parse( textBox1.Text);
-            string direccion=textBox2.Text;
-            double area = double.Parse(textBox3.Text);
-            StreamWriter fichero;
-            string ruta = @"D:\Archivos\terrenos.txt";
-            fichero = File.AppendText(ruta);
-            fichero.WriteLine(precio);
-            fichero.WriteLine(direccion);
-            fichero.WriteLine(area);
-            fichero.Close();
+            if (this.panelContenedor.Controls.Count > 0)
+                this.panelContenedor.Controls.RemoveAt(0);
+            Form formularioHijo = formulario as Form;
+            formularioHijo.TopLevel = false;
+            formularioHijo.Dock = DockStyle.Fill;
+            this.panelContenedor.Controls.Add(formularioHijo);
+            this.panelContenedor.Tag = formularioHijo;
+            formularioHijo.Show();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            abrirFormularioHijo(new Vender());
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            abrirFormularioHijo(new Comprar());
         }
     }
 }
